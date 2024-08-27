@@ -2,25 +2,15 @@
 
 import * as React from 'react';
 import RouterLink from 'next/link';
-import { usePathname } from 'next/navigation';
 import Box from '@mui/joy/Box';
-import Button from '@mui/joy/Button';
-import IconButton from '@mui/joy/IconButton';
 import Stack from '@mui/joy/Stack';
-import Typography from '@mui/joy/Typography';
-import { List as ListIcon } from '@phosphor-icons/react/dist/ssr/List';
 
 import { paths } from '@/paths';
-import { isNavItemActive } from '@/lib/is-nav-item-active';
 import { Logo } from '@/components/core/logo';
-import { NoSsr } from '@/components/core/no-ssr';
-
-import { ColorSchemeSwitch } from './color-scheme-switch';
 import { MobileNav } from './mobile-nav';
 
 export function MainNav() {
   const [openNav, setOpenNav] = React.useState(false);
-  const pathname = usePathname();
 
   return (
     <React.Fragment>
@@ -57,28 +47,5 @@ export function MainNav() {
         open={openNav}
       />
     </React.Fragment>
-  );
-}
-
-function NavItem({ disabled, external, href, pathname, title }) {
-  const active = isNavItemActive({ disabled, external, href, pathname });
-
-  return (
-    <Typography
-      {...(href && { component: RouterLink, href, ...(external && { target: '_blank', rel: 'noreferrer' }) })}
-      sx={{
-        alignItems: 'center',
-        color: 'var(--joy-palette-common-white)',
-        fontSize: 'sm',
-        fontWeight: 'md',
-        display: 'inline-flex',
-        px: '8px',
-        textDecoration: 'none',
-        ...(active && { color: 'var(--joy-palette-neutral-500)' }),
-        '&:hover': { ...(!active && { color: 'var(--joy-palette-neutral-500)' }) },
-      }}
-    >
-      <span>{title}</span>
-    </Typography>
   );
 }

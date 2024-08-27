@@ -12,7 +12,7 @@ export default function NextAppDirEmotionCacheProvider(props) {
   const [registry] = React.useState(() => {
     const cache = createCache(options);
     cache.compat = true;
-    // eslint-disable-next-line @typescript-eslint/unbound-method -- Expected
+     
     const prevInsert = cache.insert;
     let inserted = [];
     cache.insert = (...args) => {

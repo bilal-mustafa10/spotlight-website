@@ -11,16 +11,13 @@ import { motion } from 'framer-motion';
 
 import { config } from '@/config';
 import Input from "@mui/joy/Input";
+import {logger} from "@/lib/default-logger";
 
 export function Hero() {
   const [email, setEmail] = React.useState('');
 
   const handleJoinWaitlist = () => {
-    if (email) {
-      console.log(`Email submitted: ${email}`);
-    } else {
-      alert('Please enter a valid email address.');
-    }
+    logger.debug(`[Main]: Joining waitlist with email: ${email}`);
   };
 
   return (
@@ -43,10 +40,10 @@ export function Hero() {
             transition={{ duration: 0.5, ease: 'easeInOut' }}
           >
             <Stack
-              direction={{ xs: 'column', md: 'row' }}
-              spacing={3}
               alignItems="center"
+              direction={{ xs: 'column', md: 'row' }}
               justifyContent="space-between"
+              spacing={3}
             >
               <Box sx={{ flexBasis: '50%' }}>
                 <Typography
@@ -60,12 +57,12 @@ export function Hero() {
                 <Typography
                   fontSize={{ xs: 'md', sm: 'lg', md: 'xl' }}
                   fontWeight="sm"
+                  sx={{ mt: 2 }}
                   textAlign={{ xs: 'center', md: 'left' }}
                   textColor="neutral.400"
-                  sx={{ mt: 2 }}
                 >
                   Join the waiting list for Spotlight, the ultimate app experience that lets you feel the thrill of fame by simulating a live AI audience.
-                  Whether you're practicing public speaking, learning a new language, or just having fun, Spotlight is your stage to shine.
+                  Whether you&apos;re practicing public speaking, learning a new language, or just having fun, Spotlight is your stage to shine.
                 </Typography>
                 <Stack
                   direction="row"
@@ -75,8 +72,8 @@ export function Hero() {
                   <Input
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="Enter your email"
-                    value={email}
                     sx={{ width: { xs: '100%', md: '70%' } }}
+                    value={email}
                   />
 
                   <Button onClick={handleJoinWaitlist}>
@@ -104,9 +101,9 @@ export function Hero() {
                   >
                     <Image
                       alt="screen"
-                      src="/assets/screenshot-1.png"
                       layout="fill"
                       objectFit="contain"
+                      src="/assets/screenshot-1.png"
                       style={{
                         position: 'absolute',
                         top: '15%',
